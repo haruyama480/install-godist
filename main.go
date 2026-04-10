@@ -318,11 +318,17 @@ func extractZip(archivePath, destDir string) error {
 
 // sanitizeExtractPath はZipSlip脆弱性を防ぐためのパス検証を行います
 func sanitizeExtractPath(dest, filePath string) (string, error) {
-	destPath := filepath.Clean(dest)
-	targetPath := filepath.Join(destPath, filePath)
-	if !strings.HasPrefix(targetPath, destPath+string(os.PathSeparator)) && targetPath != destPath {
+	destAbs, err := filepath.Abs(dest)
+	if err != nil {
+		return "", fmt.Errorf("failed to get absolute path for dest: %w", err)
+	}
+
+	targetPath := filepath.Join(destAbs, filePath)
+
+	if !strings.HasPrefix(targetPath, destAbs+string(os.PathSeparator)) && targetPath != destAbs {
 		return "", fmt.Errorf("illegal file path: %s", filePath)
 	}
+
 	return targetPath, nil
 }
 
