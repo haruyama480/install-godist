@@ -15,11 +15,11 @@ install-godist [flags]
 
 ### Flags
 
-- `-version` Go version to install (`latest`, `1.22`, `1.22.1`)
+- `-version` Go version to install (`latest`, `1.22`, `1.22.1`, default: `latest`)
 - `-dest` Extraction destination directory (default: `./`)
-- `-os` Target OS (default: current OS)
-- `-arch` Target architecture (default: current architecture)
-- `-unstable` Include non-stable releases (`rc`, `beta`)
+- `-os` Target OS (default: current GOOS)
+- `-arch` Target architecture (default: current GOARCH)
+- `-unstable` Include non-stable releases (`rc`, `beta`, default: false)
 
 ### Examples
 
