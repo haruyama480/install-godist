@@ -63,3 +63,22 @@ brews:
       owner: haruyama480
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+
+homebrew_casks:
+  - name: install-godist
+    # https://github.com/haruyama480/homebrew-tap
+    repository:
+      owner: haruyama480
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+    url:
+      verified: github.com/haruyama480/install-godist
+    binaries:
+      - install-godist
+    # see: https://zenn.dev/mltokky/articles/96a9017e583592#macos%E3%81%AEgatekeeper%E6%A9%9F%E8%83%BD%E3%81%AE%E5%9B%9E%E9%81%BF
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/install-godist"]
+          end
