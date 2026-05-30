@@ -57,13 +57,6 @@ release:
 
     Released by [GoReleaser](https://github.com/goreleaser/goreleaser).
 
-# https://github.com/haruyama480/homebrew-tap
-brews:
-  - repository:
-      owner: haruyama480
-      name: homebrew-tap
-      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
-
 homebrew_casks:
   - name: install-godist
     # https://github.com/haruyama480/homebrew-tap
